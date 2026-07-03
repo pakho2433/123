@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星空跳跳問答 · 熊抱青春記</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<!-- ============ START SCREEN ============ -->
+<div class="overlay" id="startScreen">
+  <div class="card">
+    <h1>⭐ 星空跳跳問答 ⭐</h1>
+    <h2>《熊抱青春記》故事挑戰 · 跳上星星，直達天空書之城堡！</h2>
+    <p>得意嘅小紅熊貓喺夜空入面跳上寫住答案嘅星星。<br>答啱先可以愈跳愈高；跳錯星星就會跌落嚟，扣 1 條命（共 5 條）。</p>
+    <div class="keys">
+      <div class="key"><b>← → ↑ ↓</b> 移動方向</div>
+      <div class="key"><b>空白鍵</b> 跳躍</div>
+      <div class="key"><b>滑鼠點擊 / P 鍵</b> 隨機法寶（翅膀 / 變大 / 變貓，各 1 分鐘）</div>
+      <div class="key"><b>手機 / 平板</b> 使用畫面左右兩邊按鈕</div>
+    </div>
+    <input id="nameInput" maxlength="12" placeholder="請輸入你嘅名字" autocomplete="off">
+    <br>
+    <button class="btn" id="startBtn">開始冒險</button>
+  </div>
+</div>
+
+<!-- ============ END SCREEN ============ -->
+<div class="overlay hidden" id="endScreen">
+  <div class="card">
+    <h1 id="endTitle">🏰 恭喜！</h1>
+    <div id="resultBody"></div>
+    <a class="mailbtn" id="mailLink" href="#"><button class="btn secondary">📧 傳送成績</button></a>
+    &nbsp;
+    <button class="btn" onclick="location.reload()">再玩一次</button>
+    <p style="margin-top:14px;font-size:12px;color:#9a9ecf;">「傳送成績」會開啟你嘅電郵程式，收件人已填好 yuetki1999@gmail.com，撳「傳送」即可。</p>
+  </div>
+</div>
+
+<!-- ============ HUD ============ -->
+<div id="hud">
+  <div id="topbar">
+    <div class="hudbox">
+      <div id="playerTag"></div>
+      <div id="lives"></div>
+    </div>
+    <div class="hudbox" style="text-align:right;">
+      <div id="progress"></div>
+    </div>
+  </div>
+  <div id="questionBox">
+    <div id="qNum"></div>
+    <div id="qText"></div>
+  </div>
+  <div id="powerBox"><div class="hudbox">
+    🖱️ 法寶：<span id="powerStatus">點擊滑鼠啟動</span>
+  </div></div>
+  <div id="hint">← → ↑ ↓ 移動 · 空白鍵跳躍<br>跳上正確答案嘅星星！<br>滑鼠點擊 / P 鍵：法寶</div>
+  <div id="toast"></div>
+  <div id="mobileControls" aria-label="觸控遊戲控制">
+    <div class="touch-cluster dpad">
+      <button class="touch-btn up" data-key="ArrowUp" aria-label="向前">▲</button>
+      <button class="touch-btn left" data-key="ArrowLeft" aria-label="向左">◀</button>
+      <button class="touch-btn down" data-key="ArrowDown" aria-label="向後">▼</button>
+      <button class="touch-btn right" data-key="ArrowRight" aria-label="向右">▶</button>
+    </div>
+    <div class="touch-cluster action-pad">
+      <button class="touch-btn" id="mobilePower" aria-label="啟動法寶">法寶</button>
+      <button class="touch-btn jump" data-key="Space" aria-label="跳躍">跳躍</button>
+    </div>
+  </div>
+</div>
+
+<script src="scene.js"></script>
+<script src="world.js"></script>
+<script src="game.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
